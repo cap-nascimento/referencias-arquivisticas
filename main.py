@@ -6,6 +6,7 @@ base_path = "referencias_arquivisticas.ods"
 sheet_index = 1
 df = read_ods(base_path, sheet_index)
 
+
 change_labels = {
 	"TESE / DISSERTAÇÃO": "tese-dissertacao",
 	"INSTITUIÇÃO": "instituicao",
@@ -25,9 +26,22 @@ change_labels = {
 
 renamed_df = df.rename(columns=change_labels, inplace=False)
 
-df_teses = pd.DataFrame(columns=list(change_labels.values()))
-df_dissertacoes = pd.DataFrame(columns=list(change_labels.values()))
+# print(len(renamed_df))
+is_tese = renamed_df['tese-dissertacao'] == 'T'
+is_dissertacao = renamed_df['tese-dissertacao'] == 'D'
+nor_tese_nor_dis = renamed_df['tese-dissertacao'] == None
 
-print(len(renamed_df))
+teses_df = renamed_df[is_tese]
+temp = renamed_df.iloc[[122]]
+print(temp['tese-dissertacao'])
+dissertacoes_df = renamed_df[is_dissertacao]
+no_category = renamed_df[nor_tese_nor_dis]
 
-# df.to_csv("referencias_arquivisticas.csv", index=False)
+print(len(teses_df))
+print(len(dissertacoes_df))
+print(len(no_category))
+print(len(teses_df) + len(dissertacoes_df))
+
+# no category: 124, 140, 1444, 1882, 2161
+
+df.to_csv("referencias_arquivisticas.csv", index=False)
