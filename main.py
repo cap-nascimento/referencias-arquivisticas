@@ -2,10 +2,11 @@ from os import rename
 from pandas_ods_reader import read_ods;
 import pandas as pd;
 
-base_path = "referencias_arquivisticas.ods"
+from config import SPREADSHEET
+
+base_path = SPREADSHEET
 sheet_index = 1
 df = read_ods(base_path, sheet_index)
-
 
 change_labels = {
 	"TESE / DISSERTAÇÃO": "tese-dissertacao",
