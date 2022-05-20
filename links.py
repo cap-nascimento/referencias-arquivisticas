@@ -1,13 +1,14 @@
 import pandas as pd
 import requests
 
+from config import LINKS, SRC_DIR, OUTPUT_DIR
 
 requests.packages.urllib3.disable_warnings()
 
 # Abre o arquivo de links usando a biblioteca pandas
-dfs = pd.read_excel(r"Links.xlsx", sheet_name=None)
+dfs = pd.read_excel(SRC_DIR + '/' + LINKS, sheet_name=None)
 
-resultado = open("resultado.csv", "a+")
+resultado = open(OUTPUT_DIR + '/' + 'resultado.csv', "a+")
 
 # Cria o cabeçalho do arquivo csv de resultado
 resultado.write("TESE / DISSERTAÇÃO;TITULO DA REFERÊNCIA;LINK;STATUS LINK\n")
