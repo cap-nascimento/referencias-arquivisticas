@@ -3,4 +3,4 @@ OUTPUT_DIR="output"
 SPREADSHEET="referencias-arquivisticas.ods"
 
 # temporario
-LINKS="Links.xlsx"
+LINKS="links-das-referencias-bibliograficas.xlsx"
