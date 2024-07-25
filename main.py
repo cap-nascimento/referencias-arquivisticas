@@ -73,19 +73,32 @@ if __name__ == "__main__":
     # dissertacoes_df = renamed_df[is_dissertacao]
     # no_category = renamed_df[nor_tese_nor_dis]
     # no category: 124, 140, 1444, 1882, 2161
-    teses = renamed_df[is_tese]
-    teses = remove_undesired_column(teses, "unnamed.1")
-    teses = remove_undesired_column(teses, "tese-dissertacao")
-    teses = reduce_autor_ref(teses)
     
-    dissertacoes = renamed_df[is_dissertacao]
-    dissertacoes = remove_undesired_column(dissertacoes, "unnamed.1")
-    dissertacoes = remove_undesired_column(dissertacoes, "tese-dissertacao")
-    dissertacoes = reduce_autor_ref(dissertacoes)
+    # teses = renamed_df[is_tese]
+    # teses = remove_undesired_column(teses, "unnamed.1")
+    # teses = remove_undesired_column(teses, "tese-dissertacao")
+    # teses = reduce_autor_ref(teses)
+    
+    # dissertacoes = renamed_df[is_dissertacao]
+    # dissertacoes = remove_undesired_column(dissertacoes, "unnamed.1")
+    # dissertacoes = remove_undesired_column(dissertacoes, "tese-dissertacao")
+    # dissertacoes = reduce_autor_ref(dissertacoes)
+    
+    renamed_df = remove_undesired_column(renamed_df, "unnamed.1")
+    renamed_df = remove_undesired_column(renamed_df, "tese-dissertacao")
+    renamed_df = reduce_autor_ref(renamed_df)
     
     # insert links at the end
     # print(teses)
     # print(dissertacoes)
     
-    teses.to_csv(OUTPUT_DIR + '/filtro_teses.csv', index=False)
-    dissertacoes.to_csv(OUTPUT_DIR + '/filtro_dissertacoes.csv', index=False)
+    # teses.to_csv(OUTPUT_DIR + '/filtro_teses.csv', index=False)
+    # dissertacoes.to_csv(OUTPUT_DIR + '/filtro_dissertacoes.csv', index=False)
+    
+    renamed_df.to_csv(OUTPUT_DIR + '/vinculo.csv', index=False)
+    
+    renamed_df = remove_undesired_column(renamed_df, "instituicao")
+    renamed_df = remove_undesired_column(renamed_df, "programa")
+    renamed_df = remove_undesired_column(renamed_df, "autor-da-tese-ou-dissertacao")
+    
+    renamed_df.to_csv(OUTPUT_DIR + '/referencias.csv', index=False)
